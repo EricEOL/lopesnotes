@@ -1,12 +1,13 @@
 import '../styles/globals.css'
 import { ThemeProvider } from 'styled-components';
 import { darkTheme } from '../styles/themes';
+import { ThemeContextProvider } from '../contexts/Theme';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeContextProvider>
       <Component {...pageProps} />
-    </ThemeProvider>
+    </ThemeContextProvider>
   )
 }
 

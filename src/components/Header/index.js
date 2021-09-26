@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import { Logo } from "../Logo";
+import { ButtonTheme } from './ButtonTheme';
 
 export const Header = () => {
   return (
     <>
       <HeaderContainer>
         <Logo />
+        <ButtonTheme />
       </HeaderContainer>
       <HeaderDetail />
     </>
@@ -13,6 +15,8 @@ export const Header = () => {
 }
 
 const HeaderContainer = styled.header`
+  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,4 +35,3 @@ const HeaderDetail = styled.div`
   transform: rotate(45deg);
   margin-top: -10px;
 `
-
