@@ -3,13 +3,15 @@ export const darkTheme = {
   header: "#1f2729",
   box: "#323238",
   details: "#308665",
-  font: "#ffffff"
+  font: "#ffffff",
+  border: "#a8a8b3"
 }
 
 export const lightTheme = {
-  background: "#121214",
-  header: "#ffffff",
+  background: "#ffffff",
+  header: "#a8a8b3",
   box: "#323238",
   details: "#30a165",
-  font: "#ffffff"
+  font: "#121214",
+  border: "#a8a8b3"
 }
