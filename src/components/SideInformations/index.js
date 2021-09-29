@@ -1,25 +1,22 @@
 import styled from "styled-components";
 import { FaLinkedin } from 'react-icons/fa';
 import { VscGithub } from 'react-icons/vsc';
+import { FavoriteNoteCardVoid } from './FavoriteNoteCardVoid';
 
 export const SideInformations = () => {
   return (
     <SideInformationsContainer>
-      <div>
+      <section>
         <strong>Anotações favoritas</strong>
-        <span>Aqui vão estar sua anotações marcadas como favoritas</span>
+        <span className="subtitle">Aqui vão estar sua anotações marcadas como favoritas</span>
+        
+        <FavoriteNoteCardVoid />
+        <FavoriteNoteCardVoid />
 
-        <FavoriteNoteCardVoid>
-          <span className="textCardVoid">Por enquanto vazio...</span>
-        </FavoriteNoteCardVoid>
-        <FavoriteNoteCardVoid>
-          <span className="textCardVoid">Por enquanto vazio...</span>
-        </FavoriteNoteCardVoid>
-      
-      </div>
-      <div>
+      </section>
+      <section>
         <strong>Minhas redes</strong>
-        <span>Me adiciona lá! Será um grande prazer</span>
+        <span className="subtitle">Me adiciona lá! Será um grande prazer</span>
         <SocialNetwork href="https://www.linkedin.com/in/eric-oliveira-lopes/" target="_blank">
           <FaLinkedin size={30} />
           <span>Linkedin</span>
@@ -29,7 +26,7 @@ export const SideInformations = () => {
           <VscGithub size={30} />
           <span>GitHub</span>
         </SocialNetwork>
-      </div>
+      </section>
     </SideInformationsContainer>
   )
 }
@@ -43,7 +40,7 @@ const SideInformationsContainer = styled.div`
   padding: 16px;
   margin-top: 20px;
 
-  div {
+  section {
     display: flex;
     flex-direction: column;
     padding-bottom: 8px;
@@ -57,10 +54,11 @@ const SideInformationsContainer = styled.div`
       font-size: 22px;
     }
 
-    span {
+    .subtitle {
       color: #333;
       font-size: 14px;
       font-weight: 600;
+      margin-bottom: 15px;
     }
   }
 `
@@ -91,18 +89,3 @@ const SocialNetwork = styled.a`
   }
 `
 
-const FavoriteNoteCardVoid = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  width: 100%;
-  height: 70px;
-  background-color: ${props => props.theme.header};
-  border-radius: 4px;
-
-  .textCardVoid {
-    color: ${props => props.theme.font};
-    font-style: italic;
-  }
-`
