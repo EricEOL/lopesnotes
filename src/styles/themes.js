@@ -14,6 +14,6 @@ export const lightTheme = {
   box: "#323238",
   details: "#30a165",
   font: "#121214",
-  fontDetails: "#a8a8b3",
+  fontDetails: "#444444",
   border: "#333333"
 }
