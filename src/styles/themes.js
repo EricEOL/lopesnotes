@@ -4,7 +4,8 @@ export const darkTheme = {
   box: "#323238",
   details: "#308665",
   font: "#ffffff",
-  border: "#a8a8b3"
+  fontDetails: "#a8a8b3",
+  border: "#333333"
 }
 
 export const lightTheme = {
@@ -13,5 +14,6 @@ export const lightTheme = {
   box: "#323238",
   details: "#30a165",
   font: "#121214",
-  border: "#a8a8b3"
+  fontDetails: "#a8a8b3",
+  border: "#333333"
 }

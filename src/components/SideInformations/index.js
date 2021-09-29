@@ -1,19 +1,33 @@
-import Image from 'next/image';
 import styled from "styled-components";
-import { RiLinkedinFill } from 'react-icons/ri';
+import { FaLinkedin } from 'react-icons/fa';
+import { VscGithub } from 'react-icons/vsc';
 
 export const SideInformations = () => {
   return (
     <SideInformationsContainer>
       <div>
         <strong>Anotações favoritas</strong>
-        <Image src="/assets/void.svg" width={150} height={150} />
+        <span>Aqui vão estar sua anotações marcadas como favoritas</span>
+
+        <FavoriteNoteCardVoid>
+          <span className="textCardVoid">Por enquanto vazio...</span>
+        </FavoriteNoteCardVoid>
+        <FavoriteNoteCardVoid>
+          <span className="textCardVoid">Por enquanto vazio...</span>
+        </FavoriteNoteCardVoid>
+      
       </div>
       <div>
         <strong>Minhas redes</strong>
-        <SocialNetwork>
-          <RiLinkedinFill size={20} color="#a8a8b3" />
+        <span>Me adiciona lá! Será um grande prazer</span>
+        <SocialNetwork href="https://www.linkedin.com/in/eric-oliveira-lopes/" target="_blank">
+          <FaLinkedin size={30} />
           <span>Linkedin</span>
+        </SocialNetwork>
+
+        <SocialNetwork href="https://github.com/EricEOL" target="_blank">
+          <VscGithub size={30} />
+          <span>GitHub</span>
         </SocialNetwork>
       </div>
     </SideInformationsContainer>
@@ -29,11 +43,6 @@ const SideInformationsContainer = styled.div`
   padding: 16px;
   margin-top: 20px;
 
-  strong {
-    color: ${props => props.theme.font};
-    font-size: 22px;
-  }
-
   div {
     display: flex;
     flex-direction: column;
@@ -44,7 +53,14 @@ const SideInformationsContainer = styled.div`
     }
 
     strong {
-      margin-bottom: 30px;
+      color: ${props => props.theme.font};
+      font-size: 22px;
+    }
+
+    span {
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
     }
   }
 `
@@ -53,15 +69,40 @@ const SocialNetwork = styled.a`
   display: flex;
   align-items: center;
   cursor: pointer;
+  margin-top: 15px;
 
-  span {
-    color: ${props => props.theme.border};
-    margin-left: 10px;
+  &:hover svg {
+    color: ${props => props.theme.details};
   }
 
-  svg, span {
-    &:hover {
-      background-color: ${props => props.theme.details};
-    }
+  &:hover span {
+    color: ${props => props.theme.details};
+  }
+
+  span {
+    margin-left: 10px;
+    color: ${props => props.theme.fontDetails};
+    transition: 0.2s;
+  }
+
+  svg {
+    color: ${props => props.theme.fontDetails};
+    transition: 0.2s;
+  }
+`
+
+const FavoriteNoteCardVoid = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  width: 100%;
+  height: 70px;
+  background-color: ${props => props.theme.header};
+  border-radius: 4px;
+
+  .textCardVoid {
+    color: ${props => props.theme.font};
+    font-style: italic;
   }
 `
