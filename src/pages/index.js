@@ -1,38 +1,21 @@
+import { getPrismicClient } from '../services/prismic';
+import Prismic from '@prismicio/client';
 import { Header } from "../components/Header";
 import { BackgroundContainer } from "../components/BakcgroundContainer";
 import styled from "styled-components";
 import { SideInformations } from "../components/SideInformations";
 import { posts } from '../database';
 
-export default function Home() {
-  return (
-    <BackgroundContainer>
-      <Header />
-      <ContentContainer>
-        <PostsContainer>
-          <PostPrincipal background={posts[0].image}>
-            <strong>{posts[0].title}</strong>
-            <span>{posts[0].subtitle}</span>
-          </PostPrincipal>
-        </PostsContainer>
-        <SideInformations />
-      </ContentContainer>
-    </BackgroundContainer>
-  )
-}
-
 const ContentContainer = styled.main`
   display: flex;
   width: 100vw;
 `
-
 const PostsContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   width: 75%;
 `
-
 const PostPrincipal = styled.div`
   display: flex;
   flex-direction: column;
@@ -64,4 +47,52 @@ const PostPrincipal = styled.div`
   }
 `
 
+export default function Home({ prismicPosts }) {
+
+  return (
+    <BackgroundContainer>
+      <Header />
+      <ContentContainer>
+        <PostsContainer>
+          <PostPrincipal background={posts[0].image}>
+            <strong>{prismicPosts[0].title}</strong>
+            <span>Criado em: {prismicPosts[0].updatedAt}</span>
+          </PostPrincipal>
+        </PostsContainer>
+        <SideInformations />
+      </ContentContainer>
+    </BackgroundContainer>
+  )
+}
+
+export const getStaticProps = async (context) => {
+
+  const prismic = await getPrismicClient();
+
+  const response = await prismic.query(
+    Prismic.Predicates.at('document.type', 'postblog'),
+    { lang: '*' }
+  );
+
+  const posts = response.results.map(post => {
+    return {
+      id: post.uid,
+      title: post.data.title[0].text,
+      image: post.data.image.url,
+      updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-br', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      })
+    }
+  });
+
+  console.log(posts);
+
+  return {
+    props: {
+      prismicPosts: posts
+    }
+  }
+}
 
