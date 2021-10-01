@@ -31,6 +31,7 @@ const PostPrincipal = styled.div`
   background-position: center;
   margin-top: 15px;
   border-radius: 4px;
+  border-left: 5px solid ${props => props.theme.details};
 
   a {
     font-size: 68px;
@@ -44,7 +45,6 @@ const PostPrincipal = styled.div`
 
   span {
     color: ${props => props.theme.fontDetails};
-    text-shadow: 2px 2px 4px ${props => props.theme.background};
     font-size: 20px;
     font-style: italic;
   }
@@ -65,7 +65,6 @@ const PostsSecondary = styled.div`
     border-radius: 4px;
   }
 `
-
 export default function Home({ prismicPosts }) {
 
   const postsLenght = prismicPosts.length - 1;
@@ -76,15 +75,15 @@ export default function Home({ prismicPosts }) {
       <ContentContainer>
         <PostsContainer>
           <PostPrincipal background={prismicPosts[0].image}>
+            <span>{prismicPosts[0].updatedAt}</span>
             <Link href="">{prismicPosts[0].title}</Link>
-            <span>Criado em: {prismicPosts[0].updatedAt}</span>
           </PostPrincipal>
           <PostsSecondary>
             {postsLenght > 0 ? (
               prismicPosts.map((post, index) => {
                 if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
                   return (
-                    <PostCard title={post.title} image={post.image} />
+                    <PostCard title={post.title} image={post.image} date={post.updatedAt}/>
                   )
                 }
               })

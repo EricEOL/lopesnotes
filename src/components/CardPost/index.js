@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from 'next/link';
 
-export const PostCard = ({ title, image }) => {
+export const PostCard = ({ title, image, date }) => {
 
   return (
     <PostCardContainer>
@@ -9,6 +9,7 @@ export const PostCard = ({ title, image }) => {
       <div className="postTitle">
         <strong>{title}</strong>
         <div>
+          <span>{date}</span>
           <Link href="">Ler agora</Link>
         </div>
       </div>
@@ -41,8 +42,14 @@ const PostCardContainer = styled.div`
 
     div {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 10px;
+
+      span {
+        font-size: 12px;
+        color: ${props => props.theme.fontDetails};
+      }
 
       a {
         padding: 8px;
