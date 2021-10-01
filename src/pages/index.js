@@ -1,10 +1,11 @@
-import { getPrismicClient } from '../services/prismic';
 import Prismic from '@prismicio/client';
+import Link from 'next/link';
+import { getPrismicClient } from '../services/prismic';
 import { Header } from "../components/Header";
 import { BackgroundContainer } from "../components/BakcgroundContainer";
-import styled from "styled-components";
+import { PostCard } from '../components/CardPost';
+import styled, { css } from "styled-components";
 import { SideInformations } from "../components/SideInformations";
-import { posts } from '../database';
 
 const ContentContainer = styled.main`
   display: flex;
@@ -29,11 +30,13 @@ const PostPrincipal = styled.div`
   background-size: cover;
   background-position: center;
   margin-top: 15px;
-  border-bottom: 1px solid ${props => props.theme.details};
+  border-radius: 4px;
 
-  strong {
+  a {
     font-size: 68px;
-    text-shadow: 2px 2px 4px ${props => props.theme.details},
+    font-weight: 600;
+    text-shadow:2px 2px 0 ${props => props.theme.background},
+                2px 2px 4px ${props => props.theme.details},
                 2px 2px 8px ${props => props.theme.background},
                 2px 2px 16px ${props => props.theme.details};
     color: ${props => props.theme.font};
@@ -46,18 +49,49 @@ const PostPrincipal = styled.div`
     font-style: italic;
   }
 `
+const PostsSecondary = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 50%;
+  margin-top: 30px;
+  
+  .no-annotations {
+    background: ${props => props.theme.header};
+    color: ${props => props.theme.font};
+    font-size: 24px;
+    padding: 24px;
+    border-radius: 4px;
+  }
+`
 
 export default function Home({ prismicPosts }) {
+
+  const postsLenght = prismicPosts.length - 1;
 
   return (
     <BackgroundContainer>
       <Header />
       <ContentContainer>
         <PostsContainer>
-          <PostPrincipal background={posts[0].image}>
-            <strong>{prismicPosts[0].title}</strong>
+          <PostPrincipal background={prismicPosts[0].image}>
+            <Link href="">{prismicPosts[0].title}</Link>
             <span>Criado em: {prismicPosts[0].updatedAt}</span>
           </PostPrincipal>
+          <PostsSecondary>
+            {postsLenght > 0 ? (
+              prismicPosts.map((post, index) => {
+                if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
+                  return (
+                    <PostCard title={post.title} image={post.image} />
+                  )
+                }
+              })
+            ) : (
+              <strong className="no-annotations">Ainda não tenho outras anotações. Só essa aí de cima...😢</strong>
+            )}
+          </PostsSecondary>
         </PostsContainer>
         <SideInformations />
       </ContentContainer>
