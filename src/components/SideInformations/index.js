@@ -35,7 +35,7 @@ const SideInformationsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 85vh;
+  height: 55vh;
   border-left: 1px solid ${props => props.theme.border};
   padding: 16px;
   margin-top: 20px;

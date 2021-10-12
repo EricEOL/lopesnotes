@@ -1,11 +1,14 @@
+import Link from 'next/link';
 import styled from "styled-components"
 
 export const Logo = () => {
   return (
-    <LogoContainer>
-      <span>LOPES</span>
-      <strong>NOTES</strong>
-    </LogoContainer>
+    <Link href="/">
+      <LogoContainer>
+        <span>LOPES</span>
+        <strong>NOTES</strong>
+      </LogoContainer>
+    </Link>
   )
 }
 
@@ -14,6 +17,7 @@ const LogoContainer = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 24px;
+  cursor: pointer;
 
   span {
     color: ${props => props.theme.font};
