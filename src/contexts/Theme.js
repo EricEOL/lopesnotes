@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-import cookie from 'react-cookies';
 import { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "../styles/themes";
 

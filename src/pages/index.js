@@ -1,6 +1,7 @@
 import Prismic from '@prismicio/client';
 import Link from 'next/link';
 import { getPrismicClient } from '../services/prismic';
+import { GoTriangleRight } from 'react-icons/go';
 import { Header } from "../components/Header";
 import { BackgroundContainer } from "../components/BakcgroundContainer";
 import { PostCard } from '../components/CardPost';
@@ -22,6 +23,33 @@ const PostsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  .linkOtherPosts {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: -40px;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+
+    a {
+      color: ${props => props.theme.font};
+      font-weight: bold;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      color: ${props => props.theme.details};
+    }
+
+    @media(max-width: 768px) {
+      margin-bottom: -10px;
+    }
+  }
 `
 const PostPrincipal = styled.div`
   display: flex;
@@ -103,12 +131,16 @@ export default function Home({ prismicPosts }) {
             <span>{prismicPosts[0].updatedAt}</span>
             <Link href={`/post/${prismicPosts[0].id}`}>{prismicPosts[0].title}</Link>
           </PostPrincipal>
+          <div className="linkOtherPosts">
+            <Link href="">Outras anotações</Link>
+            <GoTriangleRight />
+          </div>
           <PostsSecondary>
             {postsLenght > 0 ? (
               prismicPosts.map((post, index) => {
                 if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
                   return (
-                    <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} key={post.id} />
+                    <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} background={post.image}  key={post.id} />
                   )
                 }
               })

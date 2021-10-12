@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import Link from 'next/link';
 
-export const PostCard = ({ title, image, date, href }) => {
+export const PostCard = ({ title, image, background, date, href }) => {
 
   return (
-    <PostCardContainer>
-      <img src={image} />
+    <PostCardContainer background={background}>
       <div className="postTitle">
         <strong>{title}</strong>
         <div>
@@ -19,24 +18,26 @@ export const PostCard = ({ title, image, date, href }) => {
 
 const PostCardContainer = styled.div`
 
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
   width: 30%;
   height: 80%;
-  background: ${props => props.theme.box};
+  background-image: url(${props => props.background});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   border-radius: 4px;
-
-  img {
-    width: 100%;
-    height: 60%;
-    border-radius: 4px 4px 0 0;
-  }
 
   .postTitle {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    height: 40%;
+    height: 50%;
     padding: 10px;
+    background: ${props => props.theme.boxPost};
 
     strong {
       color: ${props => props.theme.font};
