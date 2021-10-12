@@ -30,7 +30,7 @@ const PostsContainer = styled.div`
     justify-content: end;
     width: 90%;
     margin-top: 20px;
-    margin-bottom: -40px;
+    margin-bottom: -10px;
     text-transform: uppercase;
     font-size: 12px;
     cursor: pointer;

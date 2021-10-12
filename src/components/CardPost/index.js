@@ -23,7 +23,7 @@ const PostCardContainer = styled.div`
   justify-content: end;
 
   width: 30%;
-  height: 80%;
+  height: 250px;
   background-image: url(${props => props.background});
   background-repeat: no-repeat;
   background-size: cover;
