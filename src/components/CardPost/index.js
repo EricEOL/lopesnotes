@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from 'next/link';
 
-export const PostCard = ({ title, image, date }) => {
+export const PostCard = ({ title, image, date, href }) => {
 
   return (
     <PostCardContainer>
@@ -10,7 +10,7 @@ export const PostCard = ({ title, image, date }) => {
         <strong>{title}</strong>
         <div>
           <span>{date}</span>
-          <Link href="">Ler agora</Link>
+          <Link href={href}>Ler agora</Link>
         </div>
       </div>
     </PostCardContainer>

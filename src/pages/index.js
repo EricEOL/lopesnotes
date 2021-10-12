@@ -31,7 +31,9 @@ const PostPrincipal = styled.div`
   background-position: center;
   margin-top: 15px;
   border-radius: 4px;
-  border-left: 5px solid ${props => props.theme.details};
+  border-style: solid;
+  border: 1px solid ${props => props.theme.details};
+  border-left: 10px solid ${props => props.theme.details};
 
   a {
     font-size: 68px;
@@ -76,14 +78,14 @@ export default function Home({ prismicPosts }) {
         <PostsContainer>
           <PostPrincipal background={prismicPosts[0].image}>
             <span>{prismicPosts[0].updatedAt}</span>
-            <Link href="">{prismicPosts[0].title}</Link>
+            <Link href={`/post/${prismicPosts[0].id}`}>{prismicPosts[0].title}</Link>
           </PostPrincipal>
           <PostsSecondary>
             {postsLenght > 0 ? (
               prismicPosts.map((post, index) => {
                 if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
                   return (
-                    <PostCard title={post.title} image={post.image} date={post.updatedAt}/>
+                      <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`}/>
                   )
                 }
               })
@@ -119,8 +121,6 @@ export const getStaticProps = async (context) => {
       })
     }
   });
-
-  console.log(posts);
 
   return {
     props: {
