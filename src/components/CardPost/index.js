@@ -73,8 +73,12 @@ const PostCardContainer = styled.div`
 
   @media(max-width: 768px) {
     width: 95%;
-    height: 200px;
+    height: 180px;
     margin-bottom: 10px;
+
+    img {
+      height: 100px;
+    }
 
     .postTitle {
       font-size: 12px;
@@ -86,7 +90,7 @@ const PostCardContainer = styled.div`
 
         a {
           font-size: 8px;
-          padding: 4px;
+          padding: 6px;
         }
       }
     }

@@ -17,12 +17,12 @@ export const SideInformations = () => {
       <section>
         <strong>Minhas redes</strong>
         <span className="subtitle">Me adiciona lá! Será um grande prazer</span>
-        <SocialNetwork href="https://www.linkedin.com/in/eric-oliveira-lopes/" target="_blank">
+        <SocialNetwork href="https://www.linkedin.com/in/eric-oliveira-lopes/" target="_blank" rel="noreferrer">
           <FaLinkedin size={30} />
           <span>Linkedin</span>
         </SocialNetwork>
 
-        <SocialNetwork href="https://github.com/EricEOL" target="_blank">
+        <SocialNetwork href="https://github.com/EricEOL" target="_blank" rel="noreferrer">
           <VscGithub size={30} />
           <span>GitHub</span>
         </SocialNetwork>

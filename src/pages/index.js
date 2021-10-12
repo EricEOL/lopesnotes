@@ -14,6 +14,7 @@ const ContentContainer = styled.main`
   @media(max-width: 768px) {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 `
 const PostsContainer = styled.div`

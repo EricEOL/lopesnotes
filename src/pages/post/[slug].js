@@ -24,7 +24,7 @@ const PostContainer = styled.div`
 `
 
 const PostContent = styled.div`
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -34,6 +34,10 @@ const PostContent = styled.div`
   border-radius: 8px;
 
   background: ${props => props.theme.boxPost};
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   
   .post {
     width: 100%;
@@ -148,10 +152,10 @@ export default function Post({ post }) {
             <PostHeader>
               <h2>{post.title}</h2>
               <div>
-                <a href={post.link} alt="Repositório no Github" target="_blank">
+                <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
                   <FaGithub />
                 </a>
-                <a href={post.link} alt="Repositório no Github" target="_blank">
+                <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
                   <FaStar />
                 </a>
               </div>
