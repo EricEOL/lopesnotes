@@ -9,7 +9,6 @@ export const BackgroundContainer = ({ children }) => {
 }
 
 const Container = styled.div`
-  width: 100vw;
   min-height: 100vh;
 
   background: ${props => props.theme.background};

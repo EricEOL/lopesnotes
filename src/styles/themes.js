@@ -12,8 +12,8 @@ export const darkTheme = {
 export const lightTheme = {
   background: "#ffffff",
   header: "#a8a8b3",
-  box: "#a8a8b3",
-  boxPost: 'rgba(255,255,255, 0.2)',
+  box: 'rgba(168, 168, 179, 0.4)',
+  boxPost: 'rgba(168, 168, 179, 0.2)',
   details: "#30a165",
   font: "#121214",
   fontDetails: "#444444",

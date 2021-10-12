@@ -18,6 +18,7 @@ export const PostCard = ({ title, image, date, href }) => {
 }
 
 const PostCardContainer = styled.div`
+
   width: 30%;
   height: 80%;
   background: ${props => props.theme.box};
@@ -32,6 +33,7 @@ const PostCardContainer = styled.div`
   .postTitle {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 40%;
     padding: 10px;
@@ -64,6 +66,27 @@ const PostCardContainer = styled.div`
         &:hover {
           background-color: ${props => props.theme.background};
           color: ${props => props.theme.details};
+        }
+      }
+    }
+  }
+
+  @media(max-width: 768px) {
+    width: 95%;
+    height: 200px;
+    margin-bottom: 10px;
+
+    .postTitle {
+      font-size: 12px;
+
+      div{
+        span {
+          font-size: 10px;
+        }
+
+        a {
+          font-size: 8px;
+          padding: 4px;
         }
       }
     }

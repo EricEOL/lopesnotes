@@ -10,12 +10,17 @@ import { SideInformations } from "../components/SideInformations";
 const ContentContainer = styled.main`
   display: flex;
   width: 100vw;
+
+  @media(max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 const PostsContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 75%;
+  width: 100%;
 `
 const PostPrincipal = styled.div`
   display: flex;
@@ -50,6 +55,18 @@ const PostPrincipal = styled.div`
     font-size: 20px;
     font-style: italic;
   }
+
+  @media(max-width: 768px) {
+    height: 60vh;
+
+    a {
+      font-size: 30px;
+    }
+
+    span {
+      font-size: 16px;
+    }
+  }
 `
 const PostsSecondary = styled.div`
   display: flex;
@@ -65,6 +82,11 @@ const PostsSecondary = styled.div`
     font-size: 24px;
     padding: 24px;
     border-radius: 4px;
+  }
+
+  @media(max-width: 768px) {
+    display: flex;
+    flex-direction: column;
   }
 `
 export default function Home({ prismicPosts }) {
@@ -85,7 +107,7 @@ export default function Home({ prismicPosts }) {
               prismicPosts.map((post, index) => {
                 if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
                   return (
-                      <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`}/>
+                    <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} key={post.id} />
                   )
                 }
               })
@@ -109,7 +131,9 @@ export const getStaticProps = async (context) => {
     { lang: '*' }
   );
 
-  const posts = response.results.map(post => {
+  const postsDesc = response.results.sort((a, b) => new Date(b.last_publication_date) - new Date(a.last_publication_date));
+
+  const posts = postsDesc.map(post => {
     return {
       id: post.uid,
       title: post.data.title[0].text,

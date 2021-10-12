@@ -35,8 +35,7 @@ const SideInformationsContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 25%;
-  height: 55vh;
-  border-left: 1px solid ${props => props.theme.border};
+  min-height: 55vh;
   padding: 16px;
   margin-top: 20px;
 
@@ -60,6 +59,10 @@ const SideInformationsContainer = styled.div`
       font-weight: 600;
       margin-bottom: 15px;
     }
+  }
+
+  @media(max-width: 768px) {
+    width: 100%;
   }
 `
 
