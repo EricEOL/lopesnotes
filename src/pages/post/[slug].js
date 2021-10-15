@@ -5,6 +5,7 @@ import { BackgroundContainer } from '../../components/BakcgroundContainer';
 import { Header } from '../../components/Header';
 import { SideInformations } from '../../components/SideInformations';
 import { getPrismicClient } from '../../services/prismic';
+import { useFavoriteNotesContext } from '../../contexts/FavoriteNotes';
 
 const ContentContainer = styled.main`
   display: flex;
@@ -16,13 +17,11 @@ const ContentContainer = styled.main`
     flex-direction: column;
   }
 `
-
 const PostContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
 `
-
 const PostContent = styled.div`
   width: 80%;
   display: flex;
@@ -87,7 +86,6 @@ const PostContent = styled.div`
     }
   }
 `
-
 const PostHeader = styled.header`
   position: relative;
   display: flex;
@@ -143,6 +141,9 @@ const PostHeader = styled.header`
 `
 
 export default function Post({ post }) {
+
+  const { addFavoriteNote } = useFavoriteNotesContext();
+
   return (
     <BackgroundContainer>
       <Header />
@@ -155,7 +156,11 @@ export default function Post({ post }) {
                 <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
                   <FaGithub />
                 </a>
-                <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
+                <a 
+                  alt="Favoritar essa Nota" 
+                  rel="noreferrer"
+                  onClick={() => addFavoriteNote(post.id, post.title, post.postimage)}
+                >
                   <FaStar />
                 </a>
               </div>
@@ -176,7 +181,10 @@ export const getServerSideProps = async ({ params }) => {
 
   const response = await prismic.getByUID('postblog', String(slug), {});
 
+  console.log(response);
+
   const post = {
+    id: response.uid,
     title: RichText.asText(response.data.title),
     content: RichText.asHtml(response.data.content),
     postimage: response.data.image.url,

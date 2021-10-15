@@ -5,7 +5,7 @@ import { GoTriangleRight } from 'react-icons/go';
 import { Header } from "../components/Header";
 import { BackgroundContainer } from "../components/BakcgroundContainer";
 import { PostCard } from '../components/CardPost';
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { SideInformations } from "../components/SideInformations";
 
 const ContentContainer = styled.main`

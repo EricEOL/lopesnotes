@@ -1,6 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const FavoriteNoteCardVoid = () => {
+
   return (
     <CardContainer>
       <span className="textCardVoid">Por enquanto vazio...</span>

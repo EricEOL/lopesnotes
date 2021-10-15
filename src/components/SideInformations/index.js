@@ -2,16 +2,23 @@ import styled from "styled-components";
 import { FaLinkedin } from 'react-icons/fa';
 import { VscGithub } from 'react-icons/vsc';
 import { FavoriteNoteCardVoid } from './FavoriteNoteCardVoid';
+import { FavoriteNotesCard } from './FavoriteNotesCard';
+import { useFavoriteNotesContext } from "../../contexts/FavoriteNotes";
 
 export const SideInformations = () => {
+
+  const { notes } = useFavoriteNotesContext();
+
   return (
     <SideInformationsContainer>
       <section>
         <strong>Anotações favoritas</strong>
-        <span className="subtitle">Aqui vão estar sua anotações marcadas como favoritas</span>
-        
-        <FavoriteNoteCardVoid />
-        <FavoriteNoteCardVoid />
+        <span className="subtitle">Aqui estão suas anotações marcadas como favoritas</span>
+
+        {notes.length > 0
+          ? notes.map(note => <FavoriteNotesCard  key={note.id} id={note.id} title={note.title} />)
+          : <FavoriteNoteCardVoid />
+        }
 
       </section>
       <section>
