@@ -17,7 +17,6 @@ export const PostCard = ({ title, image, background, date, href }) => {
 }
 
 const PostCardContainer = styled.div`
-
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -29,6 +28,8 @@ const PostCardContainer = styled.div`
   background-size: cover;
   background-position: center;
   border-radius: 4px;
+  border: 1px solid ${props => props.theme.details};
+  box-shadow: 2px 2px 2px ${props => props.theme.border};
 
   .postTitle {
     display: flex;
@@ -38,9 +39,10 @@ const PostCardContainer = styled.div`
     height: 50%;
     padding: 10px;
     background: ${props => props.theme.boxPost};
+    text-shadow: 2px 2px 2px ${props => props.theme.border};
 
     strong {
-      color: ${props => props.theme.font};
+      color: ${props => props.theme.fontCardPost};
     }
 
     div {
@@ -51,7 +53,7 @@ const PostCardContainer = styled.div`
 
       span {
         font-size: 12px;
-        color: ${props => props.theme.fontDetails};
+        color: ${props => props.theme.fontCardPost};
       }
 
       a {
@@ -63,6 +65,7 @@ const PostCardContainer = styled.div`
         font-weight: 600;
         border-radius: 4px;
         transition: 0.2s;
+        text-shadow: none;
 
         &:hover {
           background-color: ${props => props.theme.background};
@@ -74,15 +77,17 @@ const PostCardContainer = styled.div`
 
   @media(max-width: 768px) {
     width: 95%;
-    height: 180px;
+    height: 250px;
     margin-bottom: 10px;
+    padding: 8px;
+    box-shadow: 2px 2px 2px ${props => props.theme.border};
 
     img {
       height: 100px;
     }
 
     .postTitle {
-      font-size: 12px;
+      font-size: 14px;
 
       div{
         span {
@@ -90,7 +95,7 @@ const PostCardContainer = styled.div`
         }
 
         a {
-          font-size: 8px;
+          font-size: 10px;
           padding: 6px;
         }
       }

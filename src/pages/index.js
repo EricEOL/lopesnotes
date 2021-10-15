@@ -66,21 +66,19 @@ const PostPrincipal = styled.div`
   margin-top: 15px;
   border-radius: 4px;
   border-style: solid;
-  border: 1px solid ${props => props.theme.details};
-  border-left: 10px solid ${props => props.theme.details};
+  border: 2px solid ${props => props.theme.details};
+  text-shadow: 2px 2px 2px ${props => props.theme.border};
+  box-shadow: 2px 2px 2px ${props => props.theme.border};
 
   a {
     font-size: 68px;
     font-weight: 600;
-    text-shadow:2px 2px 0 ${props => props.theme.background},
-                2px 2px 4px ${props => props.theme.details},
-                2px 2px 8px ${props => props.theme.background},
-                2px 2px 16px ${props => props.theme.details};
-    color: ${props => props.theme.font};
+
+    color: ${props => props.theme.fontCardPost};
   }
 
   span {
-    color: ${props => props.theme.fontDetails};
+    color: ${props => props.theme.fontCardPost};
     font-size: 20px;
     font-style: italic;
   }
