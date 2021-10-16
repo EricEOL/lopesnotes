@@ -65,6 +65,7 @@ const PostContent = styled.div`
       min-height: 50px;
       border-radius: 4px;
       padding: 10px;
+      overflow: auto;
     }
 
     ol {
