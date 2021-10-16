@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Lopes [Notes]</title>
 
-        <meta property="og:image" content="https://github.com/EricEOL/lopesnotes/blob/main/readmeimages/logo.png" key="ogimage" />
+        <meta property="og:image" content="https://raw.githubusercontent.com/EricEOL/lopesnotes/main/readmeimages/logo.png" key="ogimage" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://lopesnotes.vercel.app/" />
         <meta property="og:title" content="Lopes [Notes]" key="ogtitle" />
