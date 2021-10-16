@@ -221,24 +221,14 @@ export default function Post({ post }) {
     return checkIsFavoriteNote;
   }
 
-  function handleWheel(event) {
-    setPageYPosition(event.pageY);
+  function getPageYAfterScroll(){
+    setPageYPosition(window.scrollY);
   }
 
-  function handleScroll(event) {
-    console.log(event);
-  }
-
-  function touchableMove(event) {
-    setPageYPosition(event.changedTouches[0].pageY);
-  }
+  window.addEventListener('scroll', getPageYAfterScroll);
 
   return (
-    <BackgroundContainer 
-      onWheel={(event) => handleWheel(event)} 
-      onTouchMove={(event) => touchableMove(event)}
-      onScroll={(event) => handleScroll(event)}
-    >
+    <BackgroundContainer >
       <Header />
       <ContentContainer>
         <PostContainer>
