@@ -7,7 +7,7 @@ import { useFavoriteNotesContext } from "../../contexts/FavoriteNotes";
 
 export const SideInformations = () => {
 
-  const { notes } = useFavoriteNotesContext();
+  const { notes, removeFavoriteNote } = useFavoriteNotesContext();
 
   return (
     <SideInformationsContainer>
@@ -16,7 +16,7 @@ export const SideInformations = () => {
         <span className="subtitle">Aqui estão suas anotações marcadas como favoritas</span>
 
         {notes.length > 0
-          ? notes.map(note => <FavoriteNotesCard  key={note.id} id={note.id} title={note.title} />)
+          ? notes.map(note => <FavoriteNotesCard key={note.id} id={note.id} title={note.title} onClick={() => removeFavoriteNote(note.id)} />)
           : <FavoriteNoteCardVoid />
         }
 

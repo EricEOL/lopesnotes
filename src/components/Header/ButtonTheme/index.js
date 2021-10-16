@@ -7,8 +7,14 @@ export const ButtonTheme = () => {
   const { isDarkTheme, setIsDarkTheme } = useThemeContext();
 
   function handleChangeTheme() {
-    if (isDarkTheme === 'dark') return setIsDarkTheme('light');
-    if (isDarkTheme === 'light') return setIsDarkTheme('dark');
+    if (isDarkTheme === 'dark') {
+      localStorage.setItem('@lopesnotes_theme', 'light');
+      return setIsDarkTheme('light');
+    }
+    if (isDarkTheme === 'light') { 
+      localStorage.setItem('@lopesnotes_theme', 'dark');
+      setIsDarkTheme('dark');
+    }
   }
 
   return (

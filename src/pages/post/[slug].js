@@ -6,6 +6,7 @@ import { Header } from '../../components/Header';
 import { SideInformations } from '../../components/SideInformations';
 import { getPrismicClient } from '../../services/prismic';
 import { useFavoriteNotesContext } from '../../contexts/FavoriteNotes';
+import { useEffect, useState } from 'react';
 
 const ContentContainer = styled.main`
   display: flex;
@@ -109,18 +110,6 @@ const PostHeader = styled.header`
     padding: 10px;
     border-radius: 4px;
     background-color: ${props => props.theme.background};
-
-    svg {
-      color: ${props => props.theme.details};
-      transition: 0.2s;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-    }
   }
 
   @media (max-width: 768px) {
@@ -131,18 +120,50 @@ const PostHeader = styled.header`
 
     div {
       min-width: 80px;
-
-      svg {
-        width: 20px;
-        height: 20px;
-      }
     }
   }
+`
+const Icon = styled.span`
+      ${props => props.favorite ? `color: ${props.theme.details};` : `color: ${props.theme.header};`};
+      cursor: pointer;
+      
+      svg {
+        width: 40px;
+        height: 40px;
+        transition: 0.2s;
+
+        .favorite {
+          
+        }
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+
 `
 
 export default function Post({ post }) {
 
-  const { addFavoriteNote } = useFavoriteNotesContext();
+  const { addFavoriteNote, notes } = useFavoriteNotesContext();
+  const [isFavoriteNote, setIsFavoriteNote] = useState(() => {
+    return checkFavoriteNote(post.id);
+  });
+
+  useEffect(() => {
+    setIsFavoriteNote(checkFavoriteNote(post.id))
+  }, [notes]);
+
+  function checkFavoriteNote(id) {
+    const checkIsFavoriteNote = notes.some(note => note.id === id);
+    return checkIsFavoriteNote;
+  }
 
   return (
     <BackgroundContainer>
@@ -154,14 +175,18 @@ export default function Post({ post }) {
               <h2>{post.title}</h2>
               <div>
                 <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
-                  <FaGithub />
+                  <Icon favorite={isFavoriteNote}>
+                    <FaGithub  />
+                  </Icon>
                 </a>
-                <a 
-                  alt="Favoritar essa Nota" 
+                <a
+                  alt="Favoritar essa Nota"
                   rel="noreferrer"
                   onClick={() => addFavoriteNote(post.id, post.title, post.postimage)}
                 >
-                  <FaStar />
+                  <Icon favorite={isFavoriteNote}>
+                    <FaStar />
+                  </Icon>
                 </a>
               </div>
             </PostHeader>
@@ -180,8 +205,6 @@ export const getServerSideProps = async ({ params }) => {
   const prismic = getPrismicClient();
 
   const response = await prismic.getByUID('postblog', String(slug), {});
-
-  console.log(response);
 
   const post = {
     id: response.uid,

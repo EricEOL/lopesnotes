@@ -2,14 +2,14 @@ import Link from 'next/link';
 import styled from "styled-components";
 import { FiXCircle } from 'react-icons/fi';
 
-export const FavoriteNotesCard = ({ id, title }) => {
+export const FavoriteNotesCard = ({ id, title, onClick }) => {
 
   return (
     <CardContainer>
       <Link href={`/post/${id}`}>
         <span className="textCard">{title}</span>
       </Link>
-      <FiXCircle />
+      <FiXCircle onClick={onClick}/>
     </CardContainer>
   )
 }
@@ -48,5 +48,6 @@ const CardContainer = styled.div`
     font-size: 12px;
     font-weight: 600;
     cursor: pointer;
+    padding: 10px;
   }
 `
