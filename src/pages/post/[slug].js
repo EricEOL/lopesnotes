@@ -215,13 +215,17 @@ export default function Post({ post }) {
     setIsFavoriteNote(checkFavoriteNote(post.id))
   }, [notes]);
 
-  function handleScroll(event) {
-    setPageYPosition(event.pageY);
-  }
-
   function checkFavoriteNote(id) {
     const checkIsFavoriteNote = notes.some(note => note.id === id);
     return checkIsFavoriteNote;
+  }
+
+  function handleWheel(event) {
+    setPageYPosition(event.pageY);
+  }
+
+  function handleScroll(event) {
+    console.log(event);
   }
 
   function touchableMove(event) {
@@ -229,7 +233,11 @@ export default function Post({ post }) {
   }
 
   return (
-    <BackgroundContainer onWheel={(event) => handleScroll(event)} onTouchMove={(event) => touchableMove(event)}>
+    <BackgroundContainer 
+      onWheel={(event) => handleWheel(event)} 
+      onTouchMove={(event) => touchableMove(event)}
+      onScroll={(event) => handleScroll(event)}
+    >
       <Header />
       <ContentContainer>
         <PostContainer>

@@ -196,7 +196,8 @@ export const getStaticProps = async (context) => {
   return {
     props: {
       prismicPosts: posts
-    }
+    },
+    revalidate: 60
   }
 }
 

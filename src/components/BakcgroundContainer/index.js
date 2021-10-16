@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
-export const BackgroundContainer = ({ children, onWheel, onTouchMove }) => {
+export const BackgroundContainer = ({ children, onWheel, onTouchMove, onScroll }) => {
   return (
-    <Container id="page-container" onWheel={onWheel} onTouchMove={onTouchMove}>
+    <Container 
+      id="page-container" 
+      onWheel={onWheel} 
+      onTouchMove={onTouchMove}
+      onScroll={onScroll}
+    >
       {children}
     </Container>
   )
