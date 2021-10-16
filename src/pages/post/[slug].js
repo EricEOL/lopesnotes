@@ -1,6 +1,7 @@
 import { RichText } from 'prismic-dom';
 import styled from 'styled-components';
-import { FaGithub, FaStar } from 'react-icons/fa';
+import { FiChevronsUp } from 'react-icons/fi';
+import { FaGithub, FaStar, Fa } from 'react-icons/fa';
 import { BackgroundContainer } from '../../components/BakcgroundContainer';
 import { Header } from '../../components/Header';
 import { SideInformations } from '../../components/SideInformations';
@@ -13,7 +14,7 @@ const ContentContainer = styled.main`
   width: 100%;
   padding: 4px;
 
-  @media(max-width: 768px) {
+  @media(max-width: 768px){
     display: flex;
     flex-direction: column;
   }
@@ -22,6 +23,10 @@ const PostContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    width: 75%;
+  }
 `
 const PostContent = styled.div`
   width: 80%;
@@ -85,6 +90,17 @@ const PostContent = styled.div`
         overflow: auto;
       }
     }
+
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      p {
+        font-size: 16px;
+      }
+
+      pre {
+        overflow: auto;
+        width: 100%;
+      }
+    }
   }
 `
 const PostHeader = styled.header`
@@ -122,6 +138,17 @@ const PostHeader = styled.header`
       min-width: 80px;
     }
   }
+
+  @media (max-width: 1024px) {
+    h2 {
+      font-size: 30px;
+      width: 70%;
+    }
+
+    div {
+      min-width: 80px;
+    }
+  }
 `
 const Icon = styled.span`
       ${props => props.favorite ? `color: ${props.theme.details};` : `color: ${props.theme.header};`};
@@ -144,21 +171,53 @@ const Icon = styled.span`
           width: 25px;
           height: 25px;
         }
+
+        @media (max-width: 1024px) {
+          width: 25px;
+          height: 25px;
+        }
       }
 
 
 `
+const GoTopButton = styled.a`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: ${props => props.theme.details};
+  border-radius: 8px;
+  opacity: 0.7;
+  cursor: pointer;
+  text-decoration: none;
+
+  svg {
+    width: 30px;
+    height: 30px;
+    color: #333;
+  }
+`
 
 export default function Post({ post }) {
 
-  const { addFavoriteNote, notes } = useFavoriteNotesContext();
+  const { addFavoriteNote, removeFavoriteNote, notes } = useFavoriteNotesContext();
+
   const [isFavoriteNote, setIsFavoriteNote] = useState(() => {
     return checkFavoriteNote(post.id);
   });
+  const [ pageYPosition, setPageYPosition ] = useState(0);
 
   useEffect(() => {
     setIsFavoriteNote(checkFavoriteNote(post.id))
   }, [notes]);
+
+  function handleScroll(event) {
+    setPageYPosition(event.pageY);
+  }
 
   function checkFavoriteNote(id) {
     const checkIsFavoriteNote = notes.some(note => note.id === id);
@@ -166,13 +225,13 @@ export default function Post({ post }) {
   }
 
   return (
-    <BackgroundContainer>
+    <BackgroundContainer onWheel={(event) => handleScroll(event)}>
       <Header />
       <ContentContainer>
         <PostContainer>
           <PostContent>
             <PostHeader>
-              <h2>{post.title}</h2>
+              <h2 id="post-title">{post.title}</h2>
               <div>
                 <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
                   <Icon favorite={isFavoriteNote}>
@@ -182,7 +241,13 @@ export default function Post({ post }) {
                 <a
                   alt="Favoritar essa Nota"
                   rel="noreferrer"
-                  onClick={() => addFavoriteNote(post.id, post.title, post.postimage)}
+                  onClick={() => {
+                    if(isFavoriteNote) {
+                      removeFavoriteNote(post.id);
+                    } else {
+                      addFavoriteNote(post.id, post.title, post.postimage);
+                    }
+                  }}
                 >
                   <Icon favorite={isFavoriteNote}>
                     <FaStar />
@@ -195,6 +260,7 @@ export default function Post({ post }) {
         </PostContainer>
         <SideInformations />
       </ContentContainer>
+      {pageYPosition > 990 && <GoTopButton href="#page-container" onClick={() => setPageYPosition(0)}> <FiChevronsUp /> </GoTopButton>}
     </BackgroundContainer>
   )
 }

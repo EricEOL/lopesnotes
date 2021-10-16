@@ -13,6 +13,7 @@ export const SideInformations = () => {
     <SideInformationsContainer>
       <section>
         <strong>Anotações favoritas</strong>
+        <hr />
         <span className="subtitle">Aqui estão suas anotações marcadas como favoritas</span>
 
         {notes.length > 0
@@ -23,6 +24,7 @@ export const SideInformations = () => {
       </section>
       <section>
         <strong>Minhas redes</strong>
+        <hr />
         <span className="subtitle">Me adiciona lá! Será um grande prazer</span>
         <SocialNetwork href="https://www.linkedin.com/in/eric-oliveira-lopes/" target="_blank" rel="noreferrer">
           <FaLinkedin size={30} />
@@ -59,12 +61,23 @@ const SideInformationsContainer = styled.div`
       color: ${props => props.theme.font};
       font-size: 22px;
     }
+    
+    hr {
+      width: 20%;
+      margin-bottom: 5px;
+      border: 2px solid ${props => props.theme.details};
+      border-radius: 50px;
+    }
 
     .subtitle {
       color: #333;
       font-size: 14px;
       font-weight: 600;
       margin-bottom: 15px;
+
+      @media (max-width: 1024px) {
+        font-size: 12px;
+      }
     }
   }
 

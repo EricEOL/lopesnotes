@@ -4,7 +4,7 @@ export const FavoriteNoteCardVoid = () => {
 
   return (
     <CardContainer>
-      <span className="textCardVoid">Por enquanto vazio...</span>
+      <span className="textCardVoid">Por enquanto nenhuma...😢</span>
     </CardContainer>
   )
 }
@@ -22,7 +22,6 @@ const CardContainer = styled.div`
 
   .textCardVoid {
     color: ${props => props.theme.font};
-    font-style: italic;
     font-size: 12px;
   }
 `

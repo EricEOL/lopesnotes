@@ -27,6 +27,10 @@ const CardContainer = styled.div`
   background-color: ${props => props.theme.boxPost};
   border-radius: 4px;
 
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    padding: 10px;
+  }
+
   img {
     width: 50px;
     height: 50px;
@@ -49,5 +53,14 @@ const CardContainer = styled.div`
     font-weight: 600;
     cursor: pointer;
     padding: 10px;
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .textCard {
+      color: ${props => props.theme.font};
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
   }
 `

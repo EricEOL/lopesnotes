@@ -30,6 +30,11 @@ const PostCardContainer = styled.div`
   border-radius: 4px;
   border: 1px solid ${props => props.theme.details};
   box-shadow: 2px 2px 2px ${props => props.theme.border};
+  transition: 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 8px ${props => props.theme.details};
+  }
 
   .postTitle {
     display: flex;
@@ -96,6 +101,32 @@ const PostCardContainer = styled.div`
 
         a {
           font-size: 10px;
+          padding: 6px;
+        }
+      }
+    }
+  }
+
+  @media(max-width: 1024px) {
+    height: 250px;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-shadow: 2px 2px 2px ${props => props.theme.border};
+
+    img {
+      height: 100px;
+    }
+
+    .postTitle {
+      font-size: 12px;
+
+      div{
+        span {
+          font-size: 10px;
+        }
+
+        a {
+          font-size: 8px;
           padding: 6px;
         }
       }

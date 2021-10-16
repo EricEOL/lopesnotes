@@ -24,6 +24,10 @@ const PostsContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    width: 75%;
+  }
+
   .linkOtherPosts {
     display: flex;
     align-items: center;
@@ -92,6 +96,18 @@ const PostPrincipal = styled.div`
 
     span {
       font-size: 16px;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    height: 60vh;
+
+    a {
+      font-size: 35px;
+    }
+
+    span {
+      font-size: 14px;
     }
   }
 `
