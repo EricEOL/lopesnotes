@@ -224,12 +224,12 @@ export default function Post({ post }) {
     return checkIsFavoriteNote;
   }
 
-  function touchMoveTest(event) {
+  function touchableMove(event) {
     setPageYPosition(event.changedTouches[0].pageY);
   }
 
   return (
-    <BackgroundContainer onWheel={(event) => handleScroll(event)} onTouchMove={(event) => touchMoveTest(event)}>
+    <BackgroundContainer onWheel={(event) => handleScroll(event)} onTouchMove={(event) => touchableMove(event)}>
       <Header />
       <ContentContainer>
         <PostContainer>
