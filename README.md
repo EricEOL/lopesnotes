@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/EricEOL/calc_service/blob/main/readmeimages/logo.png" />
+  <img src="https://github.com/EricEOL/lopesnotes/blob/main/readmeimages/logo.png" />
 </p>
 
 🚧 Aplicação em desenvolvimento 🚧
