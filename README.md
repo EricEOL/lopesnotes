@@ -2,7 +2,7 @@
   <img src="https://github.com/EricEOL/lopesnotes/blob/main/readmeimages/logo.png" />
 </p>
 
-🚧 Aplicação em desenvolvimento 🚧
+<p align="center">🚧 Aplicação em desenvolvimento 🚧</p>
 
 ## Lopes Notes
  
