@@ -69,7 +69,7 @@ export const SearchBar = ({ onChange, filteredNotes }) => {
 
   return (
     <Container>
-      <SearchBarContainer focus={inputFocus}>
+      <SearchBarContainer focus={inputFocus && (filteredNotes.length > 0)}>
         <input
           type="text"
           name="search-note"
