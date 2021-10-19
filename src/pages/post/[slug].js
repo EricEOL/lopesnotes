@@ -8,6 +8,7 @@ import { SideInformations } from '../../components/SideInformations';
 import { getPrismicClient } from '../../services/prismic';
 import { useFavoriteNotesContext } from '../../contexts/FavoriteNotes';
 import { useEffect, useState } from 'react';
+import { useNotesContext } from '../../contexts/Notes';
 
 const ContentContainer = styled.main`
   display: flex;
@@ -205,23 +206,23 @@ const GoTopButton = styled.a`
 
 export default function Post({ post }) {
 
-  const { addFavoriteNote, removeFavoriteNote, notes } = useFavoriteNotesContext();
-
+  const { filterNotes, filteredNotes } = useNotesContext();
+  const { addFavoriteNote, removeFavoriteNote, favoriteNotes } = useFavoriteNotesContext();
   const [isFavoriteNote, setIsFavoriteNote] = useState(() => {
     return checkFavoriteNote(post.id);
   });
-  const [ pageYPosition, setPageYPosition ] = useState(0);
+  const [pageYPosition, setPageYPosition] = useState(0);
 
   useEffect(() => {
     setIsFavoriteNote(checkFavoriteNote(post.id))
-  }, [notes]);
+  }, [favoriteNotes]);
 
   function checkFavoriteNote(id) {
-    const checkIsFavoriteNote = notes.some(note => note.id === id);
+    const checkIsFavoriteNote = favoriteNotes.some(note => note.id === id);
     return checkIsFavoriteNote;
   }
 
-  function getPageYAfterScroll(){
+  function getPageYAfterScroll() {
     setPageYPosition(window.scrollY);
   }
 
@@ -238,14 +239,14 @@ export default function Post({ post }) {
               <div>
                 <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
                   <Icon favorite={isFavoriteNote}>
-                    <FaGithub  />
+                    <FaGithub />
                   </Icon>
                 </a>
                 <a
                   alt="Favoritar essa Nota"
                   rel="noreferrer"
                   onClick={() => {
-                    if(isFavoriteNote) {
+                    if (isFavoriteNote) {
                       removeFavoriteNote(post.id);
                     } else {
                       addFavoriteNote(post.id, post.title, post.postimage);
@@ -261,7 +262,10 @@ export default function Post({ post }) {
             <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
           </PostContent>
         </PostContainer>
-        <SideInformations />
+        <SideInformations 
+          onChange={(event) => filterNotes(event)}
+          filteredNotes={filteredNotes}
+        />
       </ContentContainer>
       {pageYPosition > 990 && <GoTopButton href="#page-container" onClick={() => setPageYPosition(0)}> <FiChevronsUp /> </GoTopButton>}
     </BackgroundContainer>

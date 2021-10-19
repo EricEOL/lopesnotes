@@ -7,6 +7,7 @@ import { BackgroundContainer } from "../components/BakcgroundContainer";
 import { PostCard } from '../components/CardPost';
 import styled from "styled-components";
 import { SideInformations } from "../components/SideInformations";
+import { useNotesContext } from '../contexts/Notes';
 
 const ContentContainer = styled.main`
   display: flex;
@@ -132,18 +133,20 @@ const PostsSecondary = styled.div`
     flex-direction: column;
   }
 `
-export default function Home({ prismicPosts }) {
+export default function Home({ prismicNotes }) {
 
-  const postsLenght = prismicPosts.length - 1;
+  const { filteredNotes, filterNotes } = useNotesContext();
+
+  const postsLenght = prismicNotes.length - 1;
 
   return (
     <BackgroundContainer>
       <Header />
       <ContentContainer>
         <PostsContainer>
-          <PostPrincipal background={prismicPosts[0].image}>
-            <span>{prismicPosts[0].updatedAt}</span>
-            <Link href={`/post/${prismicPosts[0].id}`}>{prismicPosts[0].title}</Link>
+          <PostPrincipal background={prismicNotes[0].image}>
+            <span>{prismicNotes[0].updatedAt}</span>
+            <Link href={`/post/${prismicNotes[0].id}`}>{prismicNotes[0].title}</Link>
           </PostPrincipal>
           <div className="linkOtherPosts">
             <Link href="">Outras anotações</Link>
@@ -151,7 +154,7 @@ export default function Home({ prismicPosts }) {
           </div>
           <PostsSecondary>
             {postsLenght > 0 ? (
-              prismicPosts.map((post, index) => {
+              prismicNotes.map((post, index) => {
                 if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
                   return (
                     <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} background={post.image}  key={post.id} />
@@ -163,7 +166,10 @@ export default function Home({ prismicPosts }) {
             )}
           </PostsSecondary>
         </PostsContainer>
-        <SideInformations />
+        <SideInformations 
+          onChange={(event) => filterNotes(event)}
+          filteredNotes={filteredNotes}
+        />
       </ContentContainer>
     </BackgroundContainer>
   )
@@ -178,9 +184,9 @@ export const getStaticProps = async (context) => {
     { lang: '*' }
   );
 
-  const postsDesc = response.results.sort((a, b) => new Date(b.last_publication_date) - new Date(a.last_publication_date));
+  const notesDesc = response.results.sort((a, b) => new Date(b.last_publication_date) - new Date(a.last_publication_date));
 
-  const posts = postsDesc.map(post => {
+  const notes = notesDesc.map(post => {
     return {
       id: post.uid,
       title: post.data.title[0].text,
@@ -195,7 +201,7 @@ export const getStaticProps = async (context) => {
 
   return {
     props: {
-      prismicPosts: posts
+      prismicNotes: notes
     },
     revalidate: 60
   }

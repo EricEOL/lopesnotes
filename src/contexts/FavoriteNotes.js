@@ -4,11 +4,11 @@ export const FavoriteNotesContext = createContext();
 
 export const FavoriteNotesContextProvider = ({ children }) => {
 
-  const [notes, setNotes] = useState([]);
+  const [favoriteNotes, setFavoriteNotes] = useState([]);
 
   useEffect(() => {
     const notesStoraged = localStorage.getItem('@lopesnotes_favoriteNotes');
-    if (notesStoraged) setNotes(JSON.parse(notesStoraged));
+    if (notesStoraged) setFavoriteNotes(JSON.parse(notesStoraged));
   }, [])
 
   function addFavoriteNote(id, title, imageUrl) {
@@ -19,28 +19,28 @@ export const FavoriteNotesContextProvider = ({ children }) => {
       imageUrl
     }
     
-    localStorage.setItem('@lopesnotes_favoriteNotes', JSON.stringify([...notes, note]));
-    setNotes([note, ...notes]);
+    localStorage.setItem('@lopesnotes_favoriteNotes', JSON.stringify([...favoriteNotes, note]));
+    setFavoriteNotes([note, ...favoriteNotes]);
   }
 
   function removeFavoriteNote(id) {
-    const newFavoriteNotes = notes.filter(note => note.id !== id);
+    const newFavoriteNotes = favoriteNotes.filter(note => note.id !== id);
     localStorage.setItem('@lopesnotes_favoriteNotes', JSON.stringify(newFavoriteNotes));
-    setNotes(newFavoriteNotes);
+    setFavoriteNotes(newFavoriteNotes);
   }
 
   return (
-    <FavoriteNotesContext.Provider value={{ notes, addFavoriteNote, removeFavoriteNote }} >
+    <FavoriteNotesContext.Provider value={{ favoriteNotes, addFavoriteNote, removeFavoriteNote }} >
       {children}
     </FavoriteNotesContext.Provider >
   )
 }
 
 export const useFavoriteNotesContext = () => {
-  const { notes, addFavoriteNote, removeFavoriteNote } = useContext(FavoriteNotesContext);
+  const { favoriteNotes, addFavoriteNote, removeFavoriteNote } = useContext(FavoriteNotesContext);
 
   return {
-    notes,
+    favoriteNotes,
     addFavoriteNote,
     removeFavoriteNote
   }

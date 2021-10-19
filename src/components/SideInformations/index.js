@@ -4,20 +4,22 @@ import { VscGithub } from 'react-icons/vsc';
 import { FavoriteNoteCardVoid } from './FavoriteNoteCardVoid';
 import { FavoriteNotesCard } from './FavoriteNotesCard';
 import { useFavoriteNotesContext } from "../../contexts/FavoriteNotes";
+import { SearchBar } from "./SearchBar";
 
-export const SideInformations = () => {
+export const SideInformations = ({ onChange, filteredNotes }) => {
 
-  const { notes, removeFavoriteNote } = useFavoriteNotesContext();
+  const { favoriteNotes, removeFavoriteNote } = useFavoriteNotesContext();
 
   return (
     <SideInformationsContainer>
       <section>
+        <SearchBar onChange={onChange} filteredNotes={filteredNotes} />
         <strong>Anotações favoritas</strong>
         <hr />
         <span className="subtitle">Aqui estão suas anotações marcadas como favoritas</span>
 
-        {notes.length > 0
-          ? notes.map(note => <FavoriteNotesCard key={note.id} id={note.id} title={note.title} onClick={() => removeFavoriteNote(note.id)} />)
+        {favoriteNotes.length > 0
+          ? favoriteNotes.map(note => <FavoriteNotesCard key={note.id} id={note.id} title={note.title} onClick={() => removeFavoriteNote(note.id)} />)
           : <FavoriteNoteCardVoid />
         }
 
