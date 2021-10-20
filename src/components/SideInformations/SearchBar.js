@@ -37,6 +37,10 @@ const SearchBarContainer = styled.div`
     &::-moz-placeholder {
       color: ${props => props.theme.fontDetails};
     }
+
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      font-size: 10px;
+    }
   }
 `
 const SearchIcon = styled.div`

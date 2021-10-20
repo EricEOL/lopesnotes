@@ -106,8 +106,8 @@ const PostCardContainer = styled.div`
       }
     }
   }
-
-  @media(max-width: 1024px) {
+  
+  @media screen and (min-width: 1024px) and (max-width: 1280px) {
     height: 250px;
     margin-bottom: 10px;
     padding: 8px;

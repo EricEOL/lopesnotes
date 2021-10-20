@@ -6,10 +6,11 @@ const NotesContainer = styled.ul`
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   list-style: none;
   width: 100%;
+  max-height: 200px;
+  overflow: auto;
   top: 50px;
   background: ${props => props.theme.header};
   border-bottom: 2px solid ${props => props.theme.background};
@@ -37,14 +38,14 @@ export const FilteredNotes = ({ notes }) => {
 
   return (
     <NotesContainer>
-      {notes.map(note => (
-        <li key={note.id} onClick={resetFilter}>
-          <Link href={`/post/${note.id}`}>
-            {note.title}
-          </Link>
-        </li>
-      ))
-      }
+        {notes.map(note => (
+          <li key={note.id} onClick={resetFilter}>
+            <Link href={`/post/${note.id}`}>
+              {note.title}
+            </Link>
+          </li>
+        ))
+        }
     </NotesContainer >
   )
 }

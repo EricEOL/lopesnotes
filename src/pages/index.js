@@ -35,7 +35,6 @@ const PostsContainer = styled.div`
     justify-content: end;
     width: 90%;
     margin-top: 20px;
-    margin-bottom: -10px;
     text-transform: uppercase;
     font-size: 12px;
     cursor: pointer;
@@ -111,6 +110,18 @@ const PostPrincipal = styled.div`
       font-size: 14px;
     }
   }
+
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    height: 60vh;
+
+    a {
+      font-size: 45px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
 `
 const PostsSecondary = styled.div`
   display: flex;
@@ -131,6 +142,10 @@ const PostsSecondary = styled.div`
   @media(max-width: 768px) {
     display: flex;
     flex-direction: column;
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1280px) {
+    margin-top: 0;
   }
 `
 export default function Home({ prismicNotes }) {
