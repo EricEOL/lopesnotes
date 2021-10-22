@@ -225,6 +225,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     setIsFavoriteNote(checkFavoriteNote(post.id))
+    window.addEventListener('scroll', getPageYAfterScroll);
   }, [favoriteNotes]);
 
   function checkFavoriteNote(id) {
@@ -235,9 +236,7 @@ export default function Post({ post }) {
   function getPageYAfterScroll() {
     setPageYPosition(window.scrollY);
   }
-
-  window.addEventListener('scroll', getPageYAfterScroll);
-
+  
   return (
     <BackgroundContainer >
       <Header />
@@ -272,7 +271,7 @@ export default function Post({ post }) {
             <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
           </PostContent>
         </PostContainer>
-        <SideInformations 
+        <SideInformations
           onChange={(event) => filterNotes(event)}
           filteredNotes={filteredNotes}
         />
@@ -288,8 +287,6 @@ export const getServerSideProps = async ({ params }) => {
   const prismic = getPrismicClient();
 
   const response = await prismic.getByUID('postblog', String(slug), {});
-
-  console.log(response.data.content);
 
   const post = {
     id: response.uid,
