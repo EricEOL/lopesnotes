@@ -54,6 +54,11 @@ const PostContent = styled.div`
       line-height: 36px;
     }
 
+    img {
+      width: 70%;
+      border: 1px solid ${props => props.theme.details};
+    }
+
     p, ol, pre {
       margin: 20px 0 20px 0;
     }
@@ -78,6 +83,10 @@ const PostContent = styled.div`
       p {
         font-size: 16px;
         line-height: 28px;
+      }
+
+      img {
+        width: 100%;
       }
 
       pre {
@@ -278,6 +287,8 @@ export const getServerSideProps = async ({ params }) => {
   const prismic = getPrismicClient();
 
   const response = await prismic.getByUID('postblog', String(slug), {});
+
+  console.log(response.data.content);
 
   const post = {
     id: response.uid,

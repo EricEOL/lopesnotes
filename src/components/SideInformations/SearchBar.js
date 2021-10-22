@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import styled from 'styled-components';
 import { useNotesContext } from '../../contexts/Notes';
@@ -8,7 +8,6 @@ const Container = styled.div`
   position: relative;
   width: 100%;
 `
-
 const SearchBarContainer = styled.div`
   display: flex;
   align-items: center;

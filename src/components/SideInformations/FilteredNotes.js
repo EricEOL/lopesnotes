@@ -14,6 +14,7 @@ const NotesContainer = styled.ul`
   top: 50px;
   background: ${props => props.theme.header};
   border-bottom: 2px solid ${props => props.theme.background};
+  border-radius: 0 0 25px 25px;
   z-index: 1;
 
   li {
@@ -21,6 +22,8 @@ const NotesContainer = styled.ul`
     width: 90%;
     padding: 10px;
     font-size: 12px;
+    font-weight: 600;
+    text-shadow: none;
 
     a {
       color: ${props => props.theme.font};
