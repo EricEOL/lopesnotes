@@ -139,7 +139,7 @@ const PostsSecondary = styled.div`
     border-radius: 4px;
   }
 
-  @media(max-width: 768px) {
+  @media(max-width: 1023px) {
     display: flex;
     flex-direction: column;
   }
