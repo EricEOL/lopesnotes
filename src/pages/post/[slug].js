@@ -25,7 +25,7 @@ const PostContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  @media screen and (min-width: 769px) and (max-width: 1024px) {
+  @media screen and (min-width: 769px) and (max-width: 1280px) {
     width: 75%;
   }
 `
@@ -72,6 +72,34 @@ const PostContent = styled.div`
       border-radius: 4px;
       padding: 10px;
       overflow: auto;
+
+      &::-webkit-scrollbar {
+        height: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:active {
+        background: rgb(68, 68, 68);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgb(100, 100, 100);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgb(100, 100, 100);
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:active {
+        background: rgb(68, 68, 68);
+        border-radius: 10px;
+      }
     }
 
     ol {
@@ -236,7 +264,7 @@ export default function Post({ post }) {
   function getPageYAfterScroll() {
     setPageYPosition(window.scrollY);
   }
-  
+
   return (
     <BackgroundContainer >
       <Header />

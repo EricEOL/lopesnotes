@@ -57,11 +57,6 @@ ul::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
 }
 
-ul::-webkit-scrollbar-thumb:active {
-  background: rgb(68, 68, 68);
-  border-radius: 10px;
-}
-
 a {
   text-decoration: none;
 }
