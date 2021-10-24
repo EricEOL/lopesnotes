@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Prismic from '@prismicio/client';
 import Link from 'next/link';
 import { getPrismicClient } from '../services/prismic';
@@ -155,38 +156,51 @@ export default function Home({ prismicNotes }) {
   const postsLenght = prismicNotes.length - 1;
 
   return (
-    <BackgroundContainer>
-      <Header />
-      <ContentContainer>
-        <PostsContainer>
-          <PostPrincipal background={prismicNotes[0].image}>
-            <span>{prismicNotes[0].updatedAt}</span>
-            <Link href={`/post/${prismicNotes[0].id}`}>{prismicNotes[0].title}</Link>
-          </PostPrincipal>
-          <div className="linkOtherPosts">
-            <Link href="">Outras anotações</Link>
-            <GoTriangleRight />
-          </div>
-          <PostsSecondary>
-            {postsLenght > 0 ? (
-              prismicNotes.map((post, index) => {
-                if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
-                  return (
-                    <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} background={post.image}  key={post.id} />
-                  )
-                }
-              })
-            ) : (
-              <strong className="no-annotations">Ainda não tenho outras anotações. Só essa aí de cima...😢</strong>
-            )}
-          </PostsSecondary>
-        </PostsContainer>
-        <SideInformations 
-          onChange={(event) => filterNotes(event)}
-          filteredNotes={filteredNotes}
-        />
-      </ContentContainer>
-    </BackgroundContainer>
+    <>
+      <Head>
+        <title>Lopes [Notes]</title>
+
+        <meta property="og:image" content="https://raw.githubusercontent.com/EricEOL/lopesnotes/main/readmeimages/logo.png" key="ogimage" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://lopesnotes.vercel.app/" />
+        <meta property="og:title" content="Lopes [Notes]" key="ogtitle" />
+        <meta property="og:description" content="Anotações de códigos" key="ogdesc" />
+
+      </Head>
+
+      <BackgroundContainer>
+        <Header />
+        <ContentContainer>
+          <PostsContainer>
+            <PostPrincipal background={prismicNotes[0].image}>
+              <span>{prismicNotes[0].updatedAt}</span>
+              <Link href={`/post/${prismicNotes[0].id}`}>{prismicNotes[0].title}</Link>
+            </PostPrincipal>
+            <div className="linkOtherPosts">
+              <Link href="">Outras anotações</Link>
+              <GoTriangleRight />
+            </div>
+            <PostsSecondary>
+              {postsLenght > 0 ? (
+                prismicNotes.map((post, index) => {
+                  if (index > postsLenght - 3 && index != (postsLenght - postsLenght)) {
+                    return (
+                      <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} background={post.image} key={post.id} />
+                    )
+                  }
+                })
+              ) : (
+                <strong className="no-annotations">Ainda não tenho outras anotações. Só essa aí de cima...😢</strong>
+              )}
+            </PostsSecondary>
+          </PostsContainer>
+          <SideInformations
+            onChange={(event) => filterNotes(event)}
+            filteredNotes={filteredNotes}
+          />
+        </ContentContainer>
+      </BackgroundContainer>
+    </>
   )
 }
 
