@@ -354,12 +354,12 @@ export default function Post({ post }) {
                 <strong>Gostou? Compartilhe essa anotação!</strong>
                 <ul>
                   <li>
-                    <a href={`http://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${post.title}`} target="_blank">
+                    <a href={`http://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${post.title}`} target="_blank" rel="noreferrer">
                       <FaLinkedin />
                     </a>
                   </li>
                   <li>
-                    <a href={`https://api.whatsapp.com/send?text=${pageUrl}`} data-action="share/whatsapp/share" target="_blank">
+                    <a href={`https://api.whatsapp.com/send?text=${pageUrl}`} data-action="share/whatsapp/share" target="_blank" rel="noreferrer">
                       <FaWhatsappSquare />
                     </a>
                   </li>
