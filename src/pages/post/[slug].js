@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import styled from 'styled-components';
 import { FiChevronsUp } from 'react-icons/fi';
@@ -250,9 +251,11 @@ export default function Post({ post }) {
     return checkFavoriteNote(post.id);
   });
   const [pageYPosition, setPageYPosition] = useState(0);
+  const [pageUrl, setPageUrl] = useState('');
 
   useEffect(() => {
     setIsFavoriteNote(checkFavoriteNote(post.id))
+    setPageUrl(window.location.href);
     window.addEventListener('scroll', getPageYAfterScroll);
   }, [favoriteNotes]);
 
@@ -266,46 +269,60 @@ export default function Post({ post }) {
   }
 
   return (
-    <BackgroundContainer >
-      <Header />
-      <ContentContainer>
-        <PostContainer>
-          <PostContent>
-            <PostHeader>
-              <h2 id="post-title">{post.title}</h2>
-              <div>
-                <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
-                  <Icon favorite={isFavoriteNote}>
-                    <FaGithub />
-                  </Icon>
-                </a>
-                <a
-                  alt="Favoritar essa Nota"
-                  rel="noreferrer"
-                  onClick={() => {
-                    if (isFavoriteNote) {
-                      removeFavoriteNote(post.id);
-                    } else {
-                      addFavoriteNote(post.id, post.title, post.postimage);
-                    }
-                  }}
-                >
-                  <Icon favorite={isFavoriteNote}>
-                    <FaStar />
-                  </Icon>
-                </a>
-              </div>
-            </PostHeader>
-            <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
-          </PostContent>
-        </PostContainer>
-        <SideInformations
-          onChange={(event) => filterNotes(event)}
-          filteredNotes={filteredNotes}
-        />
-      </ContentContainer>
-      {pageYPosition > 990 && <GoTopButton href="#page-container" onClick={() => setPageYPosition(0)}> <FiChevronsUp /> </GoTopButton>}
-    </BackgroundContainer>
+    <>
+      <Head>
+        <title>{`Lopes [Notes] - ${post.title}`}</title>
+
+        <meta property="og:image" content="https://raw.githubusercontent.com/EricEOL/lopesnotes/main/readmeimages/logo.png" key="ogimage" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={pageUrl} />
+        <meta property="og:title" content="Lopes [Notes]" key="ogtitle" />
+        <meta property="og:description" content={post.title} key="ogdesc" />
+
+      </Head>
+
+      <BackgroundContainer >
+        <Header />
+        <ContentContainer>
+          <PostContainer>
+            <PostContent>
+              <PostHeader>
+                <h2 id="post-title">{post.title}</h2>
+                <div>
+                  <a href={post.link} alt="Repositório no Github" target="_blank" rel="noreferrer">
+                    <Icon favorite={isFavoriteNote}>
+                      <FaGithub />
+                    </Icon>
+                  </a>
+                  <a
+                    alt="Favoritar essa Nota"
+                    rel="noreferrer"
+                    onClick={() => {
+                      if (isFavoriteNote) {
+                        removeFavoriteNote(post.id);
+                      } else {
+                        addFavoriteNote(post.id, post.title, post.postimage);
+                      }
+                    }}
+                  >
+                    <Icon favorite={isFavoriteNote}>
+                      <FaStar />
+                    </Icon>
+                  </a>
+                </div>
+              </PostHeader>
+              <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
+              <a href="">Compartilhar Linkedin</a>
+            </PostContent>
+          </PostContainer>
+          <SideInformations
+            onChange={(event) => filterNotes(event)}
+            filteredNotes={filteredNotes}
+          />
+        </ContentContainer>
+        {pageYPosition > 990 && <GoTopButton href="#page-container" onClick={() => setPageYPosition(0)}> <FiChevronsUp /> </GoTopButton>}
+      </BackgroundContainer>
+    </>
   )
 }
 
