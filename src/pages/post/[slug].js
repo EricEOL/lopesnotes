@@ -313,10 +313,7 @@ export default function Post({ post }) {
               </PostHeader>
               <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
               <a href={`
-                http://www.linkedin.com/shareArticle?mini=true&url=
-                ${pageUrl}
-                &title=${post.title}
-              `}>
+                http://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${post.title}`}>
                 Compartilhar Linkedin
               </a>
             </PostContent>
