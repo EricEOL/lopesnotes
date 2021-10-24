@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { RichText } from 'prismic-dom';
 import styled from 'styled-components';
 import { FiChevronsUp } from 'react-icons/fi';
-import { FaGithub, FaStar, Fa } from 'react-icons/fa';
+import { FaGithub, FaStar, FaWhatsappSquare, FaLinkedin } from 'react-icons/fa';
 import { BackgroundContainer } from '../../components/BakcgroundContainer';
 import { Header } from '../../components/Header';
 import { SideInformations } from '../../components/SideInformations';
@@ -25,9 +25,14 @@ const PostContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  margin-bottom: 60px;
 
   @media screen and (min-width: 769px) and (max-width: 1280px) {
     width: 75%;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0;
   }
 `
 const PostContent = styled.div`
@@ -242,6 +247,39 @@ const GoTopButton = styled.a`
     color: #333;
   }
 `
+const ShareNote = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 60px;
+
+  strong {
+    font-size: 18px;
+    color: ${props => props.theme.details};
+    margin-bottom: 10px;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 120px;
+
+    svg {
+      width: 50px;
+      height: 50px;
+
+      color: ${props => props.theme.fontDetails};
+      transition: 0.2s;
+
+      &:hover {
+        color: ${props => props.theme.details};
+      }
+    }
+  }
+
+`
 
 export default function Post({ post }) {
 
@@ -312,10 +350,21 @@ export default function Post({ post }) {
                 </div>
               </PostHeader>
               <div className="post" dangerouslySetInnerHTML={{ __html: post.content }} />
-              <a href={`
-                http://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${post.title}`}>
-                Compartilhar Linkedin
-              </a>
+              <ShareNote>
+                <strong>Gostou? Compartilhe essa anotação!</strong>
+                <ul>
+                  <li>
+                    <a href={`http://www.linkedin.com/shareArticle?mini=true&url=${pageUrl}&title=${post.title}`} target="_blank">
+                      <FaLinkedin />
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`https://api.whatsapp.com/send?text=${pageUrl}`} data-action="share/whatsapp/share" target="_blank">
+                      <FaWhatsappSquare />
+                    </a>
+                  </li>
+                </ul>
+              </ShareNote>
             </PostContent>
           </PostContainer>
           <SideInformations
