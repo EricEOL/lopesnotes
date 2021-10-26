@@ -8,7 +8,7 @@ export const NotesContextProvider = ({ children }) => {
   const [filteredNotes, setFilteredNotes] = useState([]);
 
   useEffect(() => {
-    fetch( 'https://lopesnotes.vercel.app/api/notes')
+    fetch('https://lopesnotes.vercel.app/api/notes')
       .then(response => response.json())
       .then(notes => setAllNotes(notes));
   }, [])
