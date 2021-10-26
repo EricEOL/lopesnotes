@@ -19,7 +19,7 @@ const ContentContainer = styled.div`
   }
 `
 
-const PostsContainer = styled.div`
+const NotesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -41,11 +41,11 @@ export default function all() {
     <BackgroundContainer>
       <Header />
       <ContentContainer>
-        <PostsContainer>
+        <NotesContainer>
           {allNotes.map((post, index) => (
             <PostCard title={post.title} image={post.image} date={post.updatedAt} href={`/post/${post.id}`} background={post.image} key={post.id} />
           ))}
-        </PostsContainer>
+        </NotesContainer>
         <SideInformations
           onChange={(event) => filterNotes(event)}
           filteredNotes={filteredNotes}
