@@ -17,7 +17,7 @@ export const FavoriteNotesCard = ({ id, title, onClick }) => {
 const CardContainer = styled.div`
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-bottom: 10px;
   padding: 20px;
