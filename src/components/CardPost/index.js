@@ -20,6 +20,7 @@ const PostCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: end;
+  margin-bottom: 20px;
 
   width: 30%;
   height: 250px;

@@ -177,7 +177,7 @@ export default function Home({ prismicNotes }) {
               <Link href={`/post/${prismicNotes[0].id}`}>{prismicNotes[0].title}</Link>
             </PostPrincipal>
             <div className="linkOtherPosts">
-              <Link href="">Outras anotações</Link>
+              <Link href="/post/all">Outras anotações</Link>
               <GoTriangleRight />
             </div>
             <PostsSecondary>
