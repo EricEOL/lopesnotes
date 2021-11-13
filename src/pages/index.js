@@ -12,7 +12,7 @@ import { useNotesContext } from '../contexts/Notes';
 
 const ContentContainer = styled.main`
   display: flex;
-  width: 100vw;
+  width: 100%;
 
   @media(max-width: 768px) {
     display: flex;
