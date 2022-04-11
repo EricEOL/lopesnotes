@@ -2,8 +2,6 @@
   <img src="https://github.com/EricEOL/lopesnotes/blob/main/readmeimages/logo.png" />
 </p>
 
-<p align="center">🚧 Aplicação em desenvolvimento 🚧</p>
-
 ## Lopes Notes
  
 Aplicação que serve como minhas anotações pessoais sobre códigos e que disponibilizo para outros desenvolvedores.
